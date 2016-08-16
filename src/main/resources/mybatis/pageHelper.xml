@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+		<property name="dialect" value="mysql"/>
+		<property name="offsetAsPageNum" value="true"/>
+		</plugin>
+		<plugin interceptor="tk.mybatis.mapper.mapperhelper.MapperInterceptor">
+			<property name="mappers" value="tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.common.ConditionMapper,tk.mybatis.mapper.common.special.InsertUseGeneratedKeysMapper"/>
+		</plugin>
+	</plugins>
+
+</configuration>

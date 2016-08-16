@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间特殊作用： 如果使用mapper动态代理方法，这里就需要配置mapper接口地址-->
+<mapper namespace="com.it.babasport.dao.ColorDao">
+<cache></cache>
+		<resultMap type="colorLoad" id="color">
+			<id column="id" property="cid"/>
+			<result column="name" property="name"/>
+		</resultMap>
+		<select id="load" resultMap="color">
+			select id,name from bbs_color 
+		</select>
+		<select id="getColorNameById" parameterType="int" resultType="string">
+			select name from bbs_color where id=#{colorId}
+		</select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间特殊作用： 如果使用mapper动态代理方法，这里就需要配置mapper接口地址-->
+<mapper namespace="com.it.babasport.dao.AddressDao">
+		<update id="changeStatus">
+			update bbs_address set statusAddr=0
+		</update>
+		<select id="selectAll" parameterType="string" resultType="bbs_address">
+			select a.id id,a.username username,a.province province,a.city city,a.address address,a.phone phone,a.statusAddr statusAddr,p.name provinceName,c.name cityName from bbs_address a,bbs_province p,bbs_city c where a.isDef=0 and a.buyerId=#{id}
+			and a.province=p.pid and a.city=c.cid order by a.statusAddr desc;
+		</select>
+		<select id="getAddress" resultType="bbs_address">
+			select a.id id,a.username username,a.province province,a.city city,a.address address,a.phone phone,a.statusAddr statusAddr,p.name provinceName,c.name cityName from bbs_address a,bbs_province p,bbs_city c where a.statusAddr=1
+			and a.province=p.pid and a.city=c.cid ;
+		</select>
+		<select id="getAddressById" parameterType="int" resultType="bbs_address">
+			select a.id id,a.username username,a.province province,a.city city,a.address address,a.phone phone,a.statusAddr statusAddr,p.name provinceName,c.name cityName from bbs_address a,bbs_province p,bbs_city c where a.id=#{addressId}
+			and a.province=p.pid and a.city=c.cid ;
+		</select>
+</mapper>

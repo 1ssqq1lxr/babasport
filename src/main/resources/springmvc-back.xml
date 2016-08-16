@@ -1,0 +1,78 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
+
+	<!-- springmvc 扫包 @Controller @Service ..... -->
+	<context:component-scan base-package="com.it.babasport.controller"></context:component-scan>
+	
+	<!-- <mvc:annotation-driven conversion-service="conversionService" />
+	
+	转换器 
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+
+		<property name="converters">
+			<list>
+				<bean class="com.it.babasport.convertor.CustomDateConverter" />
+			</list>
+		</property>
+	</bean>
+	-->
+	<!-- 
+	
+	<property name="freeMarkerConfigurer" >
+			<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+				 模板路径 
+				<property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
+				<property name="defaultEncoding" value="utf-8"></property>
+			</bean>
+		</property>	
+	配置freeMarker視圖解析器
+		<bean id="freemakerViewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+	掃描路徑內所有以ftl結尾的文件
+		<property name="viewNames">
+			<array>
+				<value>*.ftl</value>
+			</array>
+		</property>
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="requestContextAttribute" value="request" />
+		給視圖解析器配置優先級，你可以給之前jsp視圖解析器的值配為2
+		<property name="order" value="1" />
+	</bean>
+ -->
+	<!-- jsp视图 -->
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
+	</bean>
+	<!-- 文件上传视图解析器 ，规定：id名称必须multipartResolver <bean id="multipartResolver" 
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"> 
+		</bean> -->
+	<!-- 上传图片 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 最大上传尺寸 B 1M -->
+		<property name="maxUploadSize" value="1048576" />
+	</bean>
+
+</beans>

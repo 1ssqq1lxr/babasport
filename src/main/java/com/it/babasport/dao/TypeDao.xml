@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间特殊作用： 如果使用mapper动态代理方法，这里就需要配置mapper接口地址-->
+<mapper namespace="com.it.babasport.dao.TypeDao">
+<cache></cache>
+	<resultMap type="typeLoad" id="type">
+			<id column="id" property="tid"/>
+			<result column="name" property="name"/>
+		</resultMap>
+		<select id="load" resultMap="type">
+			select id,name from bbs_type where is_display=1
+		</select>
+</mapper>
